@@ -59,18 +59,6 @@ const Header = (props: {
         <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4 duration-200 ease-in-out d">
             <ThemeSwitch />
-
-            <span className="md:hidden">
-              <div className="flex items-center justify-center border-2 rounded-md p-1 border-neutral-300 dark:border-neutral-800 dark:bg-neutral-900/70">
-                <Icon icon="search" extra_class="size-6"/>
-              </div>
-            </span>
-
-            <span className="hidden md:inline-block">
-              <Link href='/search/'>
-                <Button text="Search Unity" size="sm"/>
-              </Link>
-            </span>
           </ul>
         </div>
       </div>
