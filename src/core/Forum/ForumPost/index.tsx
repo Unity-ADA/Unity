@@ -5,11 +5,8 @@ import { redirect, usePathname } from 'next/navigation';
 
 import Breadcrumb from "@/components/Breadcrumb";
 import { forum_sections_details } from '../const';
-import { addDoc, collection, DocumentData, getDocs } from 'firebase/firestore';
-import { db } from '@/utils/api/firebase';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
-import { nanoid } from 'nanoid';
 import { supabase } from '@/utils/api/supabase';
 import { ForumPost as FPI, ForumComment } from '@/utils/Interfaces';
 import ToolTip from '@/components/Tooltip';
