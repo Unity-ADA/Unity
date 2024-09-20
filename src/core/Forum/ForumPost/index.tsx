@@ -310,7 +310,7 @@ const ForumPost: FC = () => {
           <div className='flex flex-row flex-wrap gap-6'>
             <p className='text-xs py-2'>
               {post.likers.map((l, i) => (
-                <code className=''>{l}{i !== post.likers.length - 1 ? ", " : ""}</code>
+                <code key={i} className=''>{l}{i !== post.likers.length - 1 ? ", " : ""}</code>
               ))}
             </p>
           </div>
