@@ -1,6 +1,8 @@
 "use client";
 
 import { FC, useEffect, useState } from 'react';
+import { db } from '@/utils/api/firebase';
+import { addDoc, collection, DocumentData, getDocs } from 'firebase/firestore';
 
 import Breadcrumb from "@/components/Breadcrumb";
 import Button from '@/components/Button';
@@ -14,14 +16,8 @@ import TextLink from '@/components/TextLink';
 const ForumIndex: FC = () => {
   const [posts, setPosts] = useState<ForumPost[]>([]);
 
-  const slug_ref = [
-    "general",
-  ];
-
   useEffect(() => {
-    slug_ref.forEach((slug) => {
-      fetchPosts(slug);
-    });
+    fetchPosts("general");
   }, []);
 
   const fetchPosts = async (id: string) => {
@@ -93,7 +89,7 @@ const ForumIndex: FC = () => {
                 </h3>
 
                 <div className='flex flex-wrap flex-row justify-center gap-2 -mb-5 pt-2'>
-                  <Button icon='read_solid' text='Read Post' size='xs' url={'/forum/' + slug_ref + '/' + post.id} class_extra='dark:fill-neutral-300'/>
+                  <Button icon='read_solid' text='Read Post' size='xs' url={'/forum/' + "general" + '/' + post.id} class_extra='dark:fill-neutral-300'/>
                 </div>
               </Card>
               );
