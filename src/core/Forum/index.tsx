@@ -1,8 +1,6 @@
 "use client";
 
 import { FC, useEffect, useState } from 'react';
-import { db } from '@/utils/api/firebase';
-import { addDoc, collection, DocumentData, getDocs } from 'firebase/firestore';
 
 import Breadcrumb from "@/components/Breadcrumb";
 import Button from '@/components/Button';
