@@ -22,7 +22,7 @@ const ForumIndex: FC = () => {
     slug_ref.forEach((slug) => {
       fetchPosts(slug);
     });
-  }, [slug_ref]);
+  }, []);
 
   const fetchPosts = async (id: string) => {
     let data, error;
