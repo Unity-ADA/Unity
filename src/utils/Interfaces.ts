@@ -58,3 +58,31 @@ export interface images {
   header?:     string;
   collection?: string[]; /** @TODO test this as part of cnft integration */
 }
+
+export interface ForumComment {
+  id: number;
+  created_at: number;
+  post: string;
+  author: string;
+  post_id: number;
+  signature: string;
+  likers: string[];
+}
+
+export interface ForumPost {
+  id: number;
+  created_at: number;
+  title: string;
+  post: string;
+  author: string;
+  likers: string[];
+  signature: string;
+
+  comment_count?: number;
+}
+
+export interface ForumGeneral {
+  post?: string;
+  comment?: string;
+  title?: string;
+}

@@ -53,6 +53,16 @@ const DevelopmentIndex: FC = () => {
       button_text: 'Read Now',
       button_url: '/development/bac'
     },
+    {
+      title: 'Test the',
+      highlighted_word: 'Forums',
+      category: 'R&D / Tool',
+      description: `
+        The Unity forum has been built from the ground up in an attempt to modernize old school forums.
+      `,
+      button_text: 'Explore',
+      button_url: '/forum'
+    },
   ]
 
   return (
@@ -68,7 +78,7 @@ const DevelopmentIndex: FC = () => {
                   <h3 className="text-lg font-medium dark:text-neutral-200 flex gap-2 items-center justify-center">
                     {group.title}
 
-                    <span className="font-bold tracking-widest bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">
+                    <span className="font-bold tracking-widest dark:text-violet-400">
                       {group.highlighted_word}
                     </span>
                   </h3>

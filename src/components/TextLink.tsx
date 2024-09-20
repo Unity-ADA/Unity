@@ -6,9 +6,10 @@ interface CustomProp {
   size: size_type;
   url: string;
   target?: string;
+  ml?: boolean;
 }
 
-const TextLink: FC <CustomProp> = ({ text, size, url, target }) => {
+const TextLink: FC <CustomProp> = ({ text, size, url, target, ml = false }) => {
   let fontSize = "";
   switch (size) {
     case "xs": fontSize = "text-xs"; break;
@@ -18,9 +19,12 @@ const TextLink: FC <CustomProp> = ({ text, size, url, target }) => {
     case "xl": fontSize = "text-xl"; break;
     default: break;
   }
+  let margin_l = "";
+  if (ml) { margin_l = "ml-auto"}
 
   const span_class = `
     ${fontSize}
+    ${margin_l}
     ml-auto
     text-pink-700 dark:text-violet-400
     hover:font-bold hover:underline hover:underline-offset-4

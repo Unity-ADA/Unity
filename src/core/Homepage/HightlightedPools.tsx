@@ -49,12 +49,14 @@ const HighlightedPools: FC = () => {
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="text-lg font-medium dark:text-neutral-200 pl-1 flex gap-2 items-center justify-center">
+                  <h3 className="text-lg font-medium dark:text-neutral-200 text-center tracking-wide">
                     {group.information.name}
                   </h3>
-                  <p className="text-md font-bold tracking-wider pl-1 flex gap-2 items-center justify-center bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600 pb-2">
+
+                  <h3 className="text-md font-bold tracking-wider text-center dark:text-violet-400 pb-2">
                     {'[' + group.information.ticker + ']'}
-                  </p>
+                  </h3>
+
                   <div className="flex gap-2 justify-center -mb-5">
                     <Button text="Explore" size="xs" url={'/pools/' + group.slug}/>
                     <Button text={url_txt} size="xs" url={url} target="_blank"/>

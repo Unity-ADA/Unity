@@ -104,7 +104,7 @@ const StatsCard: FC = () => {
               </div>
 
               <div className="flex-grow flex flex-col ml-4">
-                <span className="text-lg font-bold text-center tracking-wider bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">{item.data}</span>
+                <code className="text-lg font-bold text-center tracking-wider bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">{item.data}</code>
                 <div className="flex text-sm items-center justify-between mx-auto tracking-widest">
                   <span className="text-gray-500">{item.title}</span>
                 </div>

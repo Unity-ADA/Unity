@@ -66,7 +66,7 @@ const Header: FC <HeaderProps> = ({ token, pool, curator }) => {
         </p>
 
         {(token || pool) && (
-          <h3 className="font-poppins font-extrabold text-heading text-xl my-0.5 justify-center bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">
+          <h3 className="font-poppins tracking-wider font-bold text-heading text-xl my-0.5 justify-center dark:text-violet-400">
             {'[' + ticker + ']'}
           </h3>
         )}

@@ -37,7 +37,7 @@ const BuyToken: FC<BuyTokenProps> = ({ info }) => {
         <Swap
           orderTypes={["SWAP","LIMIT","DCA"]}
           defaultToken={policy_to_use}
-          colors={{"background":"#171717","containers":"#262626","subText":"#a855f7","mainText":"#e5e5e5","buttonText":"#e5e5e5","accent":"#a855f7"}}
+          colors={{"background":"#0a0a0a","containers":"#262626","subText":"#a78bfa","mainText":"#e5e5e5","buttonText":"#0a0a0a","accent":"#a78bfa"}}
           theme="dark"
           partnerCode="unity6164647231717833386e74637a6d6c6b646e79716d3738616365663739306a7271723965686a79737932357472727876686165383964363239306e637a6e30793479637961736c613238737171727470797476337675753075716a34797533377139327275646cda39a3ee5e6b4b0d3255bfef95601890afd80709"
           partnerName="Unity"
@@ -46,12 +46,14 @@ const BuyToken: FC<BuyTokenProps> = ({ info }) => {
         />
       }
 
-      <h3 className="text-sm text-black dark:text-neutral-400 flex justify-center mt-2">
-        When buying or selling within Unity, there is a 0.2% added fee to help support the platform.
-      </h3>
-      <h3 className={`text-sm bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600 flex justify-center font-bold pb-1`}>
-        p/1 ADA = 0.002
-      </h3>
+      <div className="py-4 text-center">
+        <h3 className="text-sm text-black dark:text-neutral-400">
+          When buying or selling within Unity, there is a 0.2% added fee to help support the platform.
+        </h3>
+        <code className={`text-sm dark:text-violet-400 font-bold`}>
+          Every 1 ADA spent is 0.002 as fee
+        </code>
+      </div>
 
       {/* KBD shortcuts for DexHunter */}
       {/* lets hide this for now

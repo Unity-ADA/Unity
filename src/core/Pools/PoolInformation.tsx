@@ -112,7 +112,7 @@ for (let i = 1; i <= Math.ceil(sortedStakers.length / itemsPerPage); i++) {
                   </div>
 
                   <div className="flex-grow flex flex-col ml-4">
-                    <span className="text-lg font-bold text-center tracking-wider bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">{item.data}</span>
+                    <code className="text-lg font-bold text-center tracking-wider bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">{item.data}</code>
                     <div className="flex text-sm items-center justify-between mx-auto tracking-widest">
                       <span className="text-gray-500">{item.title}</span>
                     </div>
@@ -157,21 +157,21 @@ for (let i = 1; i <= Math.ceil(sortedStakers.length / itemsPerPage); i++) {
                   <div className="flex-grow flex flex-col items-center">
                     <div className="text-md">
                       <span>Live Stake: </span>
-                      <span className="text-sm font-bold text-center tracking-wider bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">
+                      <code className="text-sm font-bold text-center tracking-wider dark:text-violet-400">
                         ₳{(group.amount / ADA_ATOMIC_UNIT).toLocaleString(undefined, { minimumFractionDigits: 6, maximumFractionDigits: 6 })}
-                      </span>
+                      </code>
                     </div>
                     <div className="text-md">
                       <span>Total Reward: </span>
-                      <span className="text-sm font-bold text-center tracking-wider bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">
+                      <code className="text-sm font-bold text-center tracking-wider dark:text-violet-400">
                         ₳{(group.reward / ADA_ATOMIC_UNIT).toLocaleString(undefined, { minimumFractionDigits: 6, maximumFractionDigits: 6 })}
-                      </span>
+                      </code>
                     </div>
                     <div className="flex text-xs items-center justify-between mx-auto tracking-widest">
-                      <span className="text-gray-500 max-w-50 truncate">{group.address}</span>
+                      <code className="text-gray-500 max-w-50 truncate">{group.address}</code>
                     </div>
                     <div className="mt-1 flex text-xs items-center justify-between mx-auto tracking-widest">
-                      <span className="text-gray-500">{FormatUnixTime(group.time)}</span>
+                      <code className="text-gray-500">{FormatUnixTime(group.time)}</code>
                     </div>
                   </div>
                 </div>

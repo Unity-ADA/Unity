@@ -12,7 +12,7 @@ const Card: FC <CustomProp> = ({ children, hover_effect = false }) => {
   }
 
   return (
-    <div className={`${he} border-2 border-slate-400/80 dark:border-neutral-900 rounded-md p-2 bg-neutral-100 dark:bg-neutral-900/30`}>
+    <div className={`${he} border-2 border-neutral-500 dark:border-neutral-900 rounded-md p-2 bg-neutral-800 dark:bg-neutral-900/30`}>
       {children}
     </div>
   );

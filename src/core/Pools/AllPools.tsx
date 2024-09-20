@@ -80,10 +80,10 @@ const AllPools: FC = () => {
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="text-lg font-medium dark:text-neutral-200 pl-1 flex gap-2 items-center justify-center">
+                  <h3 className="text-lg font-medium dark:text-neutral-200 text-center">
                     {group.information.name}
                   </h3>
-                  <p className="text-md font-bold tracking-wider pl-1 flex gap-2 items-center justify-center bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600 pb-2">
+                  <p className="text-md font-bold tracking-wider text-center dark:text-violet-400 pb-2">
                     {'[' + group.information.ticker + ']'}
                   </p>
                   <div className="flex gap-2 justify-center -mb-5">

@@ -77,9 +77,9 @@ const AssetInformation: FC <AssetInformationProps> = ({ info }) => {
               <span className="truncate max-w-50 text-xs tracking-wider">
                 <span className="uppercase uppercase">{item.title + ': '}</span>
 
-                <span className="text-sm tracking-widest font-bold bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-400">
+                <code className="text-sm tracking-widest font-bold dark:text-violet-400">
                   {(Array.isArray(item.data) && item.data[1]) ? item.data[0] : item.data}
-                </span>
+                </code>
               </span>
             </div>
           ))}

@@ -55,7 +55,7 @@ const TokenIndex: FC = () => {
 
   function useAtomic(slug_ref: string) {
     const tokens_to_atmoic = [
-      "usdm", "minswap"
+      "usdm", "minswap", "mom"
     ];
 
     if (tokens_to_atmoic.includes(slug_ref)) {
@@ -72,7 +72,7 @@ const TokenIndex: FC = () => {
   const statistics: statistics[] = [
     {
       title: "Total Supply",
-      data: useAtomic(slug_ref).toLocaleString(undefined, { maximumFractionDigits: dataState.decimals })
+      data: useAtomic(slug_ref).toLocaleString(undefined, { maximumFractionDigits: 0 })
     },
     {
       title: "Date Minted",
@@ -129,14 +129,14 @@ const TokenIndex: FC = () => {
               <div className="py-3">
                 <h2 className="text-lg font-bold text-top-color">
                   About
-                  <span className="bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">
+                  <span className="dark:text-violet-400">
                     {' ' + token_info.information.name}
                   </span>
                 </h2>
                 <div className="border-2 w-20 border-top-color mt-1 mb-3"></div>
                 
                 <p className="p-2 mb-4 text-gray-500 dark:text-neutral-400 max-h-25 overflow-y-auto mt-4 px-2 text-sm [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-slate-300 [&::-webkit-scrollbar-thumb]:bg-slate-400 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
-                  {token_info.information.description}
+                  <code>{token_info.information.description}</code>
                 </p>
 
                 <div className="py-2 flex flex-wrap gap-4 justify-center">
@@ -146,7 +146,7 @@ const TokenIndex: FC = () => {
                         <a href={i === 2 ? 'https://pool.pm/' + item.data : undefined} target={i === 2 ? '_blank' : undefined}>
                           <div className="flex flex-col items-center py-2 md:px-4 rounded-lg">
                             <div className="max-w-45 md:max-w-60 truncate px-1">
-                              <span className="text-lg font-bold text-center tracking-wider bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">{item.data}</span>
+                              <code className="text-lg font-bold text-center tracking-wider dark:text-violet-400">{item.data}</code>
                             </div>
                             <div className="text-sm mx-auto tracking-widest">
                               <span className="text-gray-500">{item.title}</span>

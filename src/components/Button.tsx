@@ -10,11 +10,13 @@ interface CustomProp {
   icon?: string;
   url?: string;
   target?: string;
+  scale?: boolean
 }
 
-const Button: FC <CustomProp> = ({ text, size, bold_type, class_extra, icon, url, target }) => {
+const Button: FC <CustomProp> = ({ text, size, bold_type, class_extra, icon, url, target, scale }) => {
   let fontSize = "";
   let iconSize = "";
+
   switch (size) {
     case "xs": fontSize = "text-xs"; iconSize = "size-4"; break;
     case "sm": fontSize = "text-sm"; iconSize = "size-6"; break;
@@ -31,10 +33,14 @@ const Button: FC <CustomProp> = ({ text, size, bold_type, class_extra, icon, url
     default: break;
   }
 
+  let scale_effect = "";
+  if (scale) { scale_effect = `hover:scale-105`; }
+
   const button_class = `
     ${fontSize}
     ${bold}
     ${class_extra}
+    ${scale_effect}
     border-2 border-slate-400 dark:border-neutral-800
     text-neutral-700 dark:text-neutral-200
     bg-slate-100 dark:bg-neutral-950
@@ -52,12 +58,17 @@ const Button: FC <CustomProp> = ({ text, size, bold_type, class_extra, icon, url
     group-hover:-translate-x-full
   `;
 
+  const icon_class = `
+    ${iconSize}
+  `;
+
   return (
     <a className={button_class} href={url && url} target={target && target}>
       <span className={hover_effect}/>
 
-      {icon && (<Icon icon={icon} extra_class={iconSize}/>)}
-      {text && (<span className="text-neutral-800 dark:text-neutral-200 truncate uppercase tracking-widest">{text}</span>)}
+      {icon && (<Icon icon={icon} extra_class={icon_class}/>)}
+      {text && (<code className="text-neutral-800 dark:text-neutral-200 truncate uppercase tracking-widest">{text}</code>)}
+
     </a>
   );
 };

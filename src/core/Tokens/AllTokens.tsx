@@ -59,11 +59,11 @@ const AllTokens: FC = () => {
           return (
             <Card key={i} hover_effect>
               <div className="p-1">
-                <h3 className="text-lg font-medium dark:text-neutral-200 pl-1 flex gap-2 items-center justify-center">
+                <h3 className="text-lg font-medium dark:text-neutral-200 text-center tracking-wide">
                   {group.information.name}
                 </h3>
 
-                <h3 className="text-lg font-bold tracking-wider pl-1 flex gap-2 items-center justify-center bg-clip-text bg-gradient-to-bl text-transparent from-blue-600 to-violet-500 dark:from-pink-200 dark:to-violet-600">
+                <h3 className="text-md font-bold tracking-wider text-center dark:text-violet-400">
                   {'[' + group.information.ticker + ']'}
                 </h3>
 
@@ -75,8 +75,8 @@ const AllTokens: FC = () => {
                   <Chip text={group.category} size="xs"/>
                 </div>
 
-                <p className="p-2 mb-4 text-gray-500 dark:text-neutral-400 h-20 overflow-y-auto mt-4 px-2 text-center text-sm [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-slate-300 [&::-webkit-scrollbar-thumb]:bg-slate-400 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
-                  {group.information.description}
+                <p className="p-2 mb-4 text-gray-500 dark:text-neutral-400 h-25 overflow-y-auto mt-4 px-2 text-center text-sm [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-slate-300 [&::-webkit-scrollbar-thumb]:bg-slate-400 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+                  <code>{group.information.description}</code>
                 </p>
 
                   <div className="-mb-6 flex justify-center gap-4">

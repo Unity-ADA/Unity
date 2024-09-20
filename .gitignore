@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sens
+/src/utils/api/firebase.ts
+/src/utils/api/supabase.ts
