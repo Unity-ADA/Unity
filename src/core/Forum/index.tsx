@@ -5,7 +5,6 @@ import { FC, useEffect, useState } from 'react';
 import Breadcrumb from "@/components/Breadcrumb";
 import Button from '@/components/Button';
 import Card from '@/components/Card';
-import { forum_sections_details } from './const';
 import { ForumComment, ForumPost } from '@/utils/Interfaces';
 import { supabase } from '@/utils/api/supabase';
 import Chip from '@/components/Chip';
@@ -57,9 +56,9 @@ const ForumIndex: FC = () => {
             Unity Forums Overview
           </h3>
           <h3 className="text-sm text-neutral-600 dark:text-neutral-200 tracking-wider text-center">
-            The Unity Forums is in a very early stage of development when compared to the rest of the platform.<br/>
+            The Unity Forums are in a very early stage of development when compared to the rest of the platform.<br/>
             Things may break, not go as expected and other unmentionable things.<br/>
-            <span className='dark:text-violet-400 font-bold tracking-widest uppercase text-xs'>Please bare with us.</span>
+            <span className='dark:text-violet-400 font-bold tracking-widest uppercase text-xs'>Please bear with us.</span>
           </h3>
         </div>
 

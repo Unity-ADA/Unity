@@ -4,7 +4,7 @@
 import Button from "@/components/Button";
 import Icon from "@/components/Icons";
 import ToolTip from "@/components/Tooltip";
-import FormatToReadableNumber from "@/utils/FormatToReadableNumber";
+import { copy_to_clipboard, format_big_number } from "@/utils/StringUtils";
 import token from "@/verified/token";
 import Link from "next/link";
 import { title } from "process";
@@ -23,7 +23,7 @@ const AssetInformation: FC <AssetInformationProps> = ({ info }) => {
   const core_informtion: core_informtion[] = [
     {
       title: "Circulating",
-      data: [FormatToReadableNumber(info.token_informtion.supply), info.token_informtion.supply.toString()]
+      data: [format_big_number(info.token_informtion.supply), info.token_informtion.supply.toString()]
     },
     {
       title: "Decimals",
@@ -55,34 +55,27 @@ const AssetInformation: FC <AssetInformationProps> = ({ info }) => {
       <div className="border-2 mx-20 border-top-color mt-1 mb-3"/>
 
       <div className=" ">
-        <div className="my-1 flex flex-col gap-y-2">
-          { core_informtion.map((item, i) => (
-            <div
-              key={i}
-              className="flex gap-2 items-center cursor-copy border-2 px-2 py-1 border-slate-300 dark:border-neutral-800 rounded-md hover:bg-neutral-300 hover:dark:bg-neutral-900/70 hover:scale-105 transition-all duration-300"
-              onClick={() => {
-                let textToCopy = '';
-                if (Array.isArray(item.data) && item.data[1]) {
-                  textToCopy = item.data[1];
-                } else if (typeof item.data === 'string') {
-                  textToCopy = item.data;
-                } else {
-                  textToCopy = item.data.toString(); // or handle this case as needed
-                }
-                navigator.clipboard.writeText(textToCopy);
-              }}
-            >
-              <Icon icon="copy" extra_class="size-4"/>
+        <div className="my-1 flex flex-row flex-col w-60 gap-y-2">
 
-              <span className="truncate max-w-50 text-xs tracking-wider">
-                <span className="uppercase uppercase">{item.title + ': '}</span>
+          {core_informtion.map((item, i) => {
+            const data_as_str = (Array.isArray(item.data) && item.data[1]) ? item.data[0] as string : item.data as string;
+            const full_str = item.title + ": " + data_as_str;
+            let textToCopy = '';
+            if (Array.isArray(item.data) && item.data[1]) {
+              textToCopy = item.data[1];
+            } else if (typeof item.data === 'string') {
+              textToCopy = item.data;
+            } else {
+              textToCopy = item.data.toString();
+            }
 
-                <code className="text-sm tracking-widest font-bold dark:text-violet-400">
-                  {(Array.isArray(item.data) && item.data[1]) ? item.data[0] : item.data}
-                </code>
-              </span>
-            </div>
-          ))}
+            return (
+              <div key={i} onClick={() => copy_to_clipboard(textToCopy)}>
+                <Button text={full_str} size="xs" class_extra="cursor-copy"/>
+              </div>
+            );
+          })}
+
         </div>
       </div>
     </div>

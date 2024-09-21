@@ -33,6 +33,13 @@ const BuyToken: FC<BuyTokenProps> = ({ info }) => {
 
   return (
     <div className="grid grid-cols-1 grid-rows-1 md:place-items-center">
+      <div className="py-4 text-center">
+        <h3 className="text-lg uppercase font-bold tracking-wider text-black dark:text-neutral-400">
+          Buy <span className="dark:text-violet-400 tracking-wider">{"[$" + info.information.ticker + "]"}</span>
+        </h3>
+        <div className="border-2 mx-8 border-top-color mt-1 mb-3"/>
+      </div>
+
       {
         <Swap
           orderTypes={["SWAP","LIMIT","DCA"]}

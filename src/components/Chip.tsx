@@ -1,22 +1,28 @@
 import React, { FC } from "react";
 import { bold_type, size_type } from "./types/Button";
+import Icon from "./Icons";
 
 interface ChipProps {
-  text: string;
+  text?: string;
   size: size_type;
   bold_type?: bold_type;
+  max_w?: string;
+  icon?: string;
 }
 
-const Chip: FC <ChipProps> = ({ text, size, bold_type }) => {
+const Chip: FC <ChipProps> = ({ text, size, bold_type, max_w, icon }) => {
   let fontSize = "";
+  let iconSize = "";
+
   switch (size) {
-    case "xs": fontSize = "text-xs"; break;
-    case "sm": fontSize = "text-sm"; break;
-    case "md": fontSize = "text-md"; break;
-    case "lg": fontSize = "text-lg"; break;
-    case "xl": fontSize = "text-xl"; break;
+    case "xs": fontSize = "text-xs"; iconSize = "size-4"; break;
+    case "sm": fontSize = "text-sm"; iconSize = "size-6"; break;
+    case "md": fontSize = "text-md"; iconSize = "size-8"; break;
+    case "lg": fontSize = "text-lg"; iconSize = "size-10"; break;
+    case "xl": fontSize = "text-xl"; iconSize = "size-12"; break;
     default: break;
   }
+
 
   let bold = "";
   switch (bold_type) {
@@ -29,29 +35,34 @@ const Chip: FC <ChipProps> = ({ text, size, bold_type }) => {
     ${fontSize}
     ${bold}
     border border-stroke/80 dark:border-neutral-800
-    center
     relative
-    inline-block
+    flex flex-row justify-center items-center dark:fill-neutral-300
     select-none
     whitespace-nowrap
     rounded-md
-    py-1 px-3
-    align-baseline
-    font-sans
+    py-1 px-4
     uppercase
     leading-none
     text-black
     font-medium
     tracking-wider
     bg-neutral-100 dark:bg-neutral-900 
-    dark:text-neutral-200`;
+    dark:text-neutral-400`;
+
+  const icon_class = `
+    ${iconSize}
+    mx-1
+  `;
 
   return (
-    <div className={customClass}>
-      <div className="mt-px opacity-80 dark:opacity-65">
-        {text}
-      </div>
-    </div>
+    <span className={customClass}>
+      {icon && (<Icon icon={icon} extra_class={icon_class}/>)}
+      {text && (
+        <code className={`${max_w} px-1 truncate uppercase tracking-widest`}>
+          {text}
+        </code>
+      )}
+    </span>
   );
 };
 

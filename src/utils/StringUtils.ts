@@ -55,11 +55,16 @@ export function copy_to_clipboard(text: string) {
   navigator.clipboard.writeText(text);
 }
 
-export function forum_check_valid_post(title?: string, post?: string, comment?: string): boolean {
+export function forum_check_valid_post(title?: string, post?: string, comment?: string, tag?: string): boolean {
   const fg_string_rules = FORUM_GENERAL.string_rules;
   if (comment) { if (comment.length < fg_string_rules.MIN_CHARS || comment.length > fg_string_rules.MAX_CHARS_COMMENTS) { return false; } }
   if (title && post) {
     if (title.length < fg_string_rules.MIN_CHARS || title.length > fg_string_rules.MAX_CHARS_TITLE || post.length < fg_string_rules.MIN_CHARS || post.length > fg_string_rules.MAX_CHARS_POST) {
+      return false;
+    }
+  }
+  if (tag) {
+    if (tag.length < fg_string_rules.MIN_CHARS || tag.length > fg_string_rules.MAX_CHARS_TAG) {
       return false;
     }
   }

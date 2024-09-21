@@ -7,56 +7,52 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icons";
 import { ADA_ATOMIC_UNIT } from "@/consts/global";
 import TextLink from "@/components/TextLink";
-import FormatUnixTime from "@/utils/FormatUnixTime";
 import Button from "@/components/Button";
 import Link from "next/link";
 import ToolTip from "@/components/Tooltip";
+import { format_unix_time } from "@/utils/StringUtils";
 
 interface PoolInformationProps {
   pool_info: PoolData;
 }
 
 const PoolInformation: FC <PoolInformationProps> = ({ pool_info }) => {
+
+  const [currentStakersPage, setCurrentStakersPage] = useState(1);
+  const [itemsPerPage] = useState(12);
+  const [sortedStakers, setSortedStakers] = useState([...pool_info.stakers]);
+  const [has_sorted_by_high, setHasSortedByHigh] = useState(false);
+
+  const sortBy = (type: string) => {
+    let newSortedStakers = [...sortedStakers];
+    if (type === 'amount') {
+      if (has_sorted_by_high) {
+        newSortedStakers.sort((a, b) => a.amount - b.amount);
+      } else {
+        newSortedStakers.sort((a, b) => b.amount - a.amount);
+      }
+    } else if (type === 'time') {
+      if (has_sorted_by_high) {
+        newSortedStakers.sort((a, b) => a.time - b.time);
+      } else {
+        newSortedStakers.sort((a, b) => b.time - a.time);
+      }
+    }
+    setSortedStakers(newSortedStakers);
+    setHasSortedByHigh(!has_sorted_by_high);
+  };
   
-const [currentStakersPage, setCurrentStakersPage] = useState(1);
-const [itemsPerPage] = useState(12);
-const [sortedStakers, setSortedStakers] = useState([...pool_info.stakers]);
-const [has_sorted_by_high, setHasSortedByHigh] = useState(false);
+  const last_item_index = currentStakersPage * itemsPerPage;
+  const first_item_index = last_item_index - itemsPerPage;
+  const current_stakers_index = sortedStakers.slice(first_item_index, last_item_index);
 
-const sortBy = (type: string) => {
-  let newSortedStakers = [...sortedStakers];
-  if (type === 'amount') {
-    if (has_sorted_by_high) {
-      newSortedStakers.sort((a, b) => a.amount - b.amount);
-    } else {
-      newSortedStakers.sort((a, b) => b.amount - a.amount);
-    }
-  } else if (type === 'time') {
-    if (has_sorted_by_high) {
-      newSortedStakers.sort((a, b) => a.time - b.time);
-    } else {
-      newSortedStakers.sort((a, b) => b.time - a.time);
-    }
+  const page_numbers = [];
+  for (let i = 1; i <= Math.ceil(sortedStakers.length / itemsPerPage); i++) {
+    page_numbers.push(i);
   }
-  setSortedStakers(newSortedStakers);
-  setHasSortedByHigh(!has_sorted_by_high);
-};
-
-// Slice the sorted data for pagination
-const last_item_index = currentStakersPage * itemsPerPage;
-const first_item_index = last_item_index - itemsPerPage;
-const current_stakers_index = sortedStakers.slice(first_item_index, last_item_index);
-
-// Calculate the page numbers
-const page_numbers = [];
-for (let i = 1; i <= Math.ceil(sortedStakers.length / itemsPerPage); i++) {
-  page_numbers.push(i);
-}
-
 
   const resetData = () => {
     setSortedStakers(pool_info.stakers);
-
   };
 
   interface stats {
@@ -171,7 +167,7 @@ for (let i = 1; i <= Math.ceil(sortedStakers.length / itemsPerPage); i++) {
                       <code className="text-gray-500 max-w-50 truncate">{group.address}</code>
                     </div>
                     <div className="mt-1 flex text-xs items-center justify-between mx-auto tracking-widest">
-                      <code className="text-gray-500">{FormatUnixTime(group.time)}</code>
+                      <code className="text-gray-500">{format_unix_time(group.time)}</code>
                     </div>
                   </div>
                 </div>
@@ -188,9 +184,9 @@ for (let i = 1; i <= Math.ceil(sortedStakers.length / itemsPerPage); i++) {
       </div>
 
       <div className="py-2 flex flex-wrap gap-2 justify-center mx-auto lg:px-40">
-        { page_numbers.map(number => {
+        { page_numbers.map((number, i) => {
           return (
-            <span key={number} onClick={() => setCurrentStakersPage(number)}>
+            <span key={i} onClick={() => setCurrentStakersPage(number)}>
               <Button text={number.toString()} size="xs" class_extra="cursor-pointer hover:scale-110"/>
             </span>
           );

@@ -14,9 +14,9 @@ import ToolTip from "@/components/Tooltip";
 import Icon from "@/components/Icons";
 import Breadcrumb from "@/components/Breadcrumb";
 import { AssetFingerprint } from "@/utils/api/PoolPm";
-import FormatAtomic from "@/utils/FormatAtomic";
-import FormatUnixTime from "@/utils/FormatUnixTime";
 import Card from "@/components/Card";
+import { format_atomic, format_unix_time } from "@/utils/StringUtils";
+import UserSocialInteraction from "./UserSocialInteraction";
 
 const TokenIndex: FC = () => {
   const slug = usePathname();
@@ -59,7 +59,7 @@ const TokenIndex: FC = () => {
     ];
 
     if (tokens_to_atmoic.includes(slug_ref)) {
-      return FormatAtomic(dataState.decimals, dataState.quantity);
+      return format_atomic(dataState.decimals, dataState.quantity);
     }
     return dataState.quantity;
   }
@@ -76,7 +76,7 @@ const TokenIndex: FC = () => {
     },
     {
       title: "Date Minted",
-      data: FormatUnixTime(dataState.mint)
+      data: format_unix_time(dataState.mint)
     },
     {
       title: "Minters Address",
@@ -91,8 +91,8 @@ const TokenIndex: FC = () => {
       <div className="py-4 px-2">
         <Header token={token_info}/>
 
-        <div className="p-5">
-          <div className="flex flex-col sm:flex-row sm:mt-10">
+        <div>
+          <div className="flex flex-col sm:flex-row sm:mt-10 min-w-screen">
             <div className="flex flex-col min-w-60">
               <div className="sm:order-none order-3">
                 <TokenSocial info={token_info}/>
@@ -125,17 +125,23 @@ const TokenIndex: FC = () => {
               </div>
             </div>
 
-            <div className="flex flex-col sm:w-2/3 order-first sm:order-none sm:-mt-10">
+            <div className="flex flex-col order-first sm:order-none sm:-mt-10 md:ml-5">
               <div className="py-3">
-                <h2 className="text-lg font-bold text-top-color">
-                  About
-                  <span className="dark:text-violet-400">
-                    {' ' + token_info.information.name}
-                  </span>
+                <UserSocialInteraction info={token_info}/>
+
+                <div className="flex border-2 my-4 dark:border-neutral-600 rounded-full md:m-10" />
+
+                <h2 className="text-lg font-bold text-top-color tracking-wider flex flex-col justify-center items-center">
+                  <div>
+                    About
+                    <span className="dark:text-violet-400">
+                      {' ' + token_info.information.name}
+                    </span>
+                  </div>
+                  <div className="dark:bg-neutral-300 h-1 rounded-full w-20 mt-1 mb-3"/>
                 </h2>
-                <div className="border-2 w-20 border-top-color mt-1 mb-3"></div>
                 
-                <p className="p-2 mb-4 text-gray-500 dark:text-neutral-400 max-h-25 overflow-y-auto mt-4 px-2 text-sm [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-slate-300 [&::-webkit-scrollbar-thumb]:bg-slate-400 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+                <p className="p-2 mb-4 text-center text-gray-500 dark:text-neutral-400 max-h-25 overflow-y-auto mt-4 px-2 text-sm [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-slate-300 [&::-webkit-scrollbar-thumb]:bg-slate-400 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
                   <code>{token_info.information.description}</code>
                 </p>
 

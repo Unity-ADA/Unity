@@ -10,7 +10,6 @@ import { FORUM_GENERAL } from '@/consts/global';
 import { forum_check_valid_post } from '@/utils/StringUtils';
 
 interface component_props {
-  is_edit: boolean;
   is_popup_open: boolean;
 
   comment_text: string;
@@ -21,7 +20,7 @@ interface component_props {
 }
 
 const CreateCommentPopup: FC <component_props> = ({
-  is_edit, is_popup_open, toggle_popup, create_post, comment_text, set_comment_text
+  is_popup_open, toggle_popup, create_post, comment_text, set_comment_text
 }) => {
   const { isConnected } = useCardano();
   const [is_valid, set_is_valid] = useState(false);
@@ -46,7 +45,7 @@ const CreateCommentPopup: FC <component_props> = ({
         <div className="fixed inset-0 bg-neutral-950 bg-opacity-70 flex justify-center items-center z-10 transition-all duration-300">
           <div className="mx-4 dark:bg-neutral-900 border-2 dark:border-neutral-800 px-4 py-2 rounded-lg flex flex-col gap-2">
             <h3 className='font-bold tracking-wider text-center'>
-              {is_edit ? "Edit your comment" : "Comment on post"}
+              Comment on Token
             </h3>
 
             <code className='text-center text-xs md:px-10'>

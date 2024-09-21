@@ -8,6 +8,7 @@ import { forum_check_valid_post } from '@/utils/StringUtils';
 import { useCardano } from '@cardano-foundation/cardano-connect-with-wallet';
 import ToolTip from '@/components/Tooltip';
 import { FORUM_GENERAL } from '@/consts/global';
+import CustomMarkdown from '@/components/MarkdownRender';
 
 interface component_props {
   is_popup_open: boolean;
@@ -15,6 +16,9 @@ interface component_props {
 
   title_text: string;
   set_title_text: Dispatch<SetStateAction<string>>;
+
+  tag_text: string;
+  set_tag_text: Dispatch<SetStateAction<string>>;
 
   post_text: string;
   set_post_text: Dispatch<SetStateAction<string>>;
@@ -24,7 +28,7 @@ interface component_props {
 }
 
 const CreatePostPopup: FC <component_props> = ({
-  is_popup_open, section_info, title_text, set_title_text, post_text, set_post_text, toggle_popup, create_post
+  is_popup_open, section_info, title_text, set_title_text, post_text, set_post_text, toggle_popup, create_post, tag_text, set_tag_text
 }) => {
   const { isConnected } = useCardano();
   const [show_preview, set_show_preview] = useState(false);
@@ -38,11 +42,11 @@ const CreatePostPopup: FC <component_props> = ({
 
   useEffect(() => {
     if (title_text.length !== 0 && post_text.length !== 0) {
-      set_is_valid(forum_check_valid_post(title_text, post_text, undefined));
+      set_is_valid(forum_check_valid_post(title_text, post_text, undefined, tag_text));
     } else {
       set_is_valid(false);
     }
-  }, [title_text, post_text]);
+  }, [title_text, post_text, tag_text]);
 
   function handle_create_post() {
     create_post();
@@ -68,6 +72,16 @@ const CreatePostPopup: FC <component_props> = ({
             <div>
               <form className="flex flex-col gap-4 mt-4">
                 <div className='block'>
+                  <code className='text-xs'>{tag_text.length + "/" + fg_string_rules.MAX_CHARS_TAG + ' - Dont use a hashtag! Can be left blank.'}</code>
+                  <input
+                    placeholder="Write a #tag..."
+                    className="w-full px-4 py-2 bg-neutral-950/70 rounded-md text-sm focus:bg-neutral-950/30 focus:text-neutral-300 text-neutral-400 placeholder-neutral-400 focus:ring-0 focus:outline-none"
+                    value={tag_text}
+                    onChange={(e) => set_tag_text(e.target.value)}
+                  />
+                </div>
+
+                <div className='block'>
                   <code className='text-xs'>{title_text.length + "/" + fg_string_rules.MAX_CHARS_TITLE}</code>
                   <input
                     placeholder="Write a title..."
@@ -88,16 +102,9 @@ const CreatePostPopup: FC <component_props> = ({
                 </div>
 
                 <div className={`block ${show_preview == true ? "min-h-20" : "hidden"}`}>
-                  <Markdown
-                    components={{
-                      img: ({ node, ...props }) => <img className='mx-auto max-w-30 py-2 my-2 max-h-full' {...props} />,
-                      hr: ({ node, ...props }) => <hr className='my-2' {...props} />,
-                      p: ({ node, ...props }) => <p className='py-0.5' {...props} />,
-                      a: ({ node, ...props }) => <a className='py-0.5 dark:text-violet-400 font-medium tracking-wider' {...props} />,
-                    }}
-                  >
+                  <CustomMarkdown>
                     {post_text}
-                  </Markdown>
+                  </CustomMarkdown>
                 </div>
 
                 <div className='flex flex-row justify-center' onClick={toggle_preview}>

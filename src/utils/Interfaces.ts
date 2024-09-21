@@ -59,6 +59,22 @@ export interface images {
   collection?: string[]; /** @TODO test this as part of cnft integration */
 }
 
+export interface TokenLikes {
+  id: number;
+  project_slug: string;
+  likers: string[];
+}
+
+export interface TokenComment {
+  id: number;
+  created_at: number;
+  comment: string;
+  author: string;
+  post_id: number;
+  signature: string;
+  likers: string[];
+}
+
 export interface ForumComment {
   id: number;
   created_at: number;
@@ -66,6 +82,8 @@ export interface ForumComment {
   author: string;
   post_id: number;
   signature: string;
+  last_updated: number;
+  updated_comment: string;
   likers: string[];
 }
 
@@ -77,6 +95,7 @@ export interface ForumPost {
   author: string;
   likers: string[];
   signature: string;
+  tag: string;
 
   comment_count?: number;
 }
