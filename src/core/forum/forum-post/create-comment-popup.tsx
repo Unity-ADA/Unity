@@ -148,7 +148,7 @@ const CommentPostPopup: FC <custom_props> =  ({
                     {users_handles.map((h, i) => {
                       const ada_handle_name = "$" + Buffer.from(h.assetName, 'hex').toString('utf8');
                       return (
-                        <div onClick={() => users_picked_handle(ada_handle_name)}>
+                        <div key={i} onClick={() => users_picked_handle(ada_handle_name)}>
                           <Button key={i} text={ada_handle_name} size='xs' class_extra='text-lime-400 cursor-pointer'/>
                         </div>
                       )}

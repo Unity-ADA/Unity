@@ -68,22 +68,22 @@ const About: FC = () => {
           let btn_txt = "Explore Tokens";
           let btn_url = "/tokens"
           if (i === 1) { icon = "write_solid"; fill = "fill-yellow-500"; btn_txt = "Enter Forums"; btn_url = "/forums" }
-          
+
           return (
-            <div className="w-full md:w-100">
-            <Card key={i} extra_class="">
-              <div className="mt-2 flex flex-col justify-center group flex-wrap gap-2 items-center">
-                <h3 className="text-neutral-300 text-md uppercase font-bold tracking-wider">{item.title}</h3>
-              </div>
-              <div className='my-2 rounded-md border-2 border-neutral-900 bg-neutral-950/20 px-2'>
-                <div className="h-30 px-4 py-2 text-sm text-neutral-300 break-words text-center overflow-y-auto [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-neutral-700 [&::-webkit-scrollbar-thumb]:bg-neutral-500">
-                  <code>{item.data}</code>
+            <div key={i} className="w-full md:w-100">
+              <Card extra_class="">
+                <div className="mt-2 flex flex-col justify-center group flex-wrap gap-2 items-center">
+                  <h3 className="text-neutral-300 text-md uppercase font-bold tracking-wider">{item.title}</h3>
                 </div>
-              </div>
-              <div className="flex flex-wrap gap-4 justify-center py-2">
-                <Button icon={icon} text={btn_txt} size="xs" url={btn_url} class_extra={fill}/>
-              </div>
-            </Card>
+                <div className='my-2 rounded-md border-2 border-neutral-900 bg-neutral-950/20 px-2'>
+                  <div className="h-30 px-4 py-2 text-sm text-neutral-300 break-words text-center overflow-y-auto [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-neutral-700 [&::-webkit-scrollbar-thumb]:bg-neutral-500">
+                    <code>{item.data}</code>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-4 justify-center py-2">
+                  <Button icon={icon} text={btn_txt} size="xs" url={btn_url} class_extra={fill}/>
+                </div>
+              </Card>
             </div>
           )}
         )}

@@ -45,7 +45,7 @@ export const usePageInfo = () => {
 }
 
 /** @note example: localhost:3000/forums/general/23 turns into ["general", "23"] */
-export const use_last_two_subpages = (): string[] => {
+export const use_last_two_subpages = (): [string | undefined, string | undefined] => {
   const [subpage1, set_subpage1] = useState<string>();
   const [subpage2, set_subpage2] = useState<string>();
 
@@ -68,7 +68,7 @@ export const use_last_two_subpages = (): string[] => {
     }
   }, []);
 
-  return [subpage1 as string, subpage2 as string];
+  return [subpage1, subpage2];
 }
 
 export const fetch_db = async (forum_posts_db_name: string, forum_cmts_db_name: string) => {
