@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const channels = {
-  testbox: process.env.TESTBOX_WEBHOOK,
-  unity_token_updates: process.env.UNITY_TOKEN_UPDATES_WEBHOOK,
-  unity_forum_posts: process.env.UNITY_FORUM_POSTS_WEBHOOK,
+  testbox: process.env.TESTBOX_WEBHOOK || '',
+  unity_token_updates: process.env.UNITY_TOKEN_UPDATES_WEBHOOK || '',
+  unity_forum_posts: process.env.UNITY_FORUM_POSTS_WEBHOOK || '',
 }
 
 type post_where = |
