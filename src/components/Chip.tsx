@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { bold_type, size_type } from "./types/Button";
+import { bold_type, size_type } from "@/utils/Types";
 import Icon from "./Icons";
 
 interface ChipProps {
@@ -34,9 +34,9 @@ const Chip: FC <ChipProps> = ({ text, size, bold_type, max_w, icon }) => {
   const customClass = `
     ${fontSize}
     ${bold}
-    border border-stroke/80 dark:border-neutral-800
+    border border-neutral-800
     relative
-    flex flex-row justify-center items-center dark:fill-neutral-300
+    flex flex-row justify-center items-center fill-neutral-300
     select-none
     whitespace-nowrap
     rounded-md
@@ -46,8 +46,8 @@ const Chip: FC <ChipProps> = ({ text, size, bold_type, max_w, icon }) => {
     text-black
     font-medium
     tracking-wider
-    bg-neutral-100 dark:bg-neutral-900 
-    dark:text-neutral-400`;
+    bg-neutral-900/50
+    text-neutral-400`;
 
   const icon_class = `
     ${iconSize}
@@ -56,7 +56,7 @@ const Chip: FC <ChipProps> = ({ text, size, bold_type, max_w, icon }) => {
 
   return (
     <span className={customClass}>
-      {icon && (<Icon icon={icon} extra_class={icon_class}/>)}
+      {icon && (<Icon icon={icon} extra_class={icon_class + " opacity-80"}/>)}
       {text && (
         <code className={`${max_w} px-1 truncate uppercase tracking-widest`}>
           {text}

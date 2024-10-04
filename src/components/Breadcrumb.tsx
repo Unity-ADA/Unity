@@ -2,7 +2,7 @@ import { FC } from "react";
 import Icon from "./Icons";
 import Link from "next/link";
 
-interface BreadcrumbProp {
+interface custom_props {
   sub_page_1?: string;
   active_page?: string;
   sub_page_2?: string;
@@ -10,7 +10,7 @@ interface BreadcrumbProp {
   sub_page_4?: string;
 }
 
-const Breadcrumb: FC<BreadcrumbProp> = ({
+const Breadcrumb: FC<custom_props> = ({
   sub_page_1,
   active_page,
   sub_page_2,
@@ -18,35 +18,28 @@ const Breadcrumb: FC<BreadcrumbProp> = ({
   sub_page_4,
 }) => {
   const border = `
-    border-2
-    border-neutral-400
-    dark:border-neutral-800
+    border
+    border-neutral-800
+    bg-neutral-950/50 backdrop-blur
   `;
 
   const text = `
-    text-neutral-400
-    dark:text-neutral-500
-    fill-neutral-400
-    dark:fill-neutral-500
+    text-neutral-600/60
+    fill-neutral-600/60
   `;
 
   const active_text = `
-    text-neutral-600
-    dark:text-neutral-300
-    fill-neutral-600
-    dark:fill-neutral-300
+    text-neutral-300/60
+    fill-neutral-300/60
   `;
 
   const hover = `
     transition-all
     duration-300
     hover:scale-105
-    group-hover:fill-neutral-500
-    group-hover:text-neutral-500
-    group-hover:border-neutral-500
-    group-hover:dark:fill-violet-400
-    group-hover:dark:text-violet-400
-    group-hover:dark:border-violet-400
+    group-hover:fill-violet-400
+    group-hover:text-violet-400
+    group-hover:border-violet-400
   `;
 
   return (
@@ -139,12 +132,12 @@ const Breadcrumb: FC<BreadcrumbProp> = ({
                   {active_page.toUpperCase()}
                 </span>
                 {sub_page_1 === "Tokens" && (
-                  <Icon icon="coin_solid" extra_class="size-4 mx-1" />
+                  <Icon icon="logo" extra_class="size-4 mx-1" />
                 )}
                 {sub_page_1 === "Pools" && (
                   <Icon icon="pool" extra_class="size-4 mx-1" />
                 )}
-                {(sub_page_1 === "Curators" || sub_page_1 === "Forum") && (
+                {(sub_page_1 === "Curators" || sub_page_1 === "Forums") && (
                   <Icon icon="curator_solid" extra_class="size-4 mx-1" />
                 )}
                 {(sub_page_1 === "Development" ||
@@ -154,7 +147,7 @@ const Breadcrumb: FC<BreadcrumbProp> = ({
                 {(active_page === "Tokens" || active_page === "Pools" || active_page === "Curators") && (
                   <Icon icon="search" extra_class="size-4 mx-1" />
                 )}
-                {(active_page === "Forum") && (
+                {(active_page === "Forums") && (
                   <Icon icon="curator_solid" extra_class="size-4 mx-1" />
                 )}
               </div>

@@ -1,9 +1,11 @@
 import { FC } from "react";
-import { bold_type, size_type } from "./types/Button";
+import { bold_type, size_type } from "@/utils/Types";
 import Icon from "./Icons";
+import Link from "next/link";
+import SocialIcon from "./SocialIcons";
 
-interface CustomProp {
-  text?: string | number;
+interface custom_props {
+  text?: string | number ;
   size: size_type;
   bold_type?: bold_type;
   class_extra?: string;
@@ -13,9 +15,10 @@ interface CustomProp {
   scale?: boolean;
   max_w?: string;
   img?: string;
+  social_icon?: string;
 }
 
-const Button: FC <CustomProp> = ({ text, size, bold_type, class_extra, icon, url, target, scale, max_w, img }) => {
+const Button: FC <custom_props> = ({ text, size, bold_type, class_extra, icon, url, target, scale, max_w, img, social_icon }) => {
   let fontSize = "";
   let iconSize = "";
   let imgSize = "";
@@ -44,9 +47,7 @@ const Button: FC <CustomProp> = ({ text, size, bold_type, class_extra, icon, url
     ${bold}
     ${class_extra}
     ${scale_effect}
-    border-2 border-slate-400 dark:border-neutral-800
-    text-neutral-700 dark:text-neutral-200
-    bg-slate-100 dark:bg-neutral-950
+    border border-neutral-800 text-neutral-200 bg-neutral-950/50
     flex overflow-hidden items-center shadow whitespace-pre group relative justify-center gap-2 rounded-md
     focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
     py-1 px-4
@@ -56,7 +57,7 @@ const Button: FC <CustomProp> = ({ text, size, bold_type, class_extra, icon, url
   const hover_effect = `
     absolute right-0
     -mt-12 h-32 w-8 translate-x-12 rotate-12
-    dark:bg-white bg-black opacity-10
+    bg-white opacity-10
     transition-all duration-1000 ease-out
     group-hover:-translate-x-full
   `;
@@ -71,17 +72,35 @@ const Button: FC <CustomProp> = ({ text, size, bold_type, class_extra, icon, url
   `;
 
   return (
-    <a className={button_class} href={url && url} target={target && target}>
-      <span className={hover_effect}/>
+    <>
+      {!url ? 
+        <span className={button_class}>
+          <span className={hover_effect}/>
 
-      {img && (<img src={img} className={image_class} />)}
-      {icon && (<Icon icon={icon} extra_class={icon_class}/>)}
-      {text && (
-        <code className={`text-neutral-800 dark:text-neutral-200 truncate uppercase tracking-widest ${max_w}`}>
-          {text}
-        </code>
-      )}
-    </a>
+          {img && (<img src={img} className={image_class} />)}
+          {icon && (<Icon icon={icon} extra_class={icon_class}/>)}
+          {social_icon && (<SocialIcon icon={social_icon} extra_class={icon_class}/>)}
+          {text && (
+            <code className={`truncate uppercase tracking-widest ${max_w}`}>
+              {text}
+            </code>
+          )}
+        </span>
+      :
+        <Link className={button_class} href={url as string} target={target}>
+          <span className={hover_effect}/>
+
+          {img && (<img src={img} className={image_class} />)}
+          {icon && (<Icon icon={icon} extra_class={icon_class}/>)}
+          {social_icon && (<SocialIcon icon={social_icon} extra_class={icon_class}/>)}
+          {text && (
+            <code className={`truncate uppercase tracking-widest ${max_w}`}>
+              {text}
+            </code>
+          )}
+        </Link>
+      }
+    </>
   );
 };
 

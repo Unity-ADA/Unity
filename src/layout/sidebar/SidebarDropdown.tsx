@@ -10,10 +10,12 @@ const SidebarDropdown = ({ item }: any) => {
       <ul className="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
         {item.map((item: any, index: number) => (
           <li key={index}>
-            <Link
+            <Link onClick={(event) => {
+                event.preventDefault();
+              }}
               href={item.route}
-              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium hover:text-neutral-800 hover:dark:text-violet-500 duration-300 ease-in-out ${
-                pathname === item.route ? "text-neutral-700 dark:text-violet-400" : ""
+              className={`tracking-wide text-neutral-500 group relative flex items-center gap-2.5 rounded-md px-4 font-medium hover:text-violet-500 duration-300 ease-in-out ${
+                pathname === item.route ? "text-violet-400" : ""
               }`}
             >
               {item.label}

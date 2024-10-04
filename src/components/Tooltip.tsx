@@ -21,18 +21,18 @@ const ToolTip: FC<ToolTipProps> = ({ text, children }) => {
   };
 
   return (
-    <div className={'has-tooltip cursor-help'} onMouseMove={handleMouseMove}>
+    <div className={'has-tooltip'} onMouseMove={handleMouseMove}>
       {children}
 
       <div
-        className="m-0.5 max-w-70 tooltip dark:bg-neutral-900/70 rounded-lg border border-neutral-700 shadow-md shadow-neutral-950/80 flex items-center justify-center"
+        className="m-0.5 max-w-70 tooltip bg-neutral-900 rounded-lg border border-neutral-700 shadow-md shadow-neutral-950/80 flex items-center justify-center"
         style={{
           position: 'fixed',
           left: tooltipPosition.x,
           top: tooltipPosition.y,
         }}
       >
-        <span className={`px-2 py-1 tracking-wider dark:text-neutral-300 text-sm font-medium`}>
+        <span className={`px-2 py-1 tracking-wider text-neutral-400 text-sm font-medium`}>
           {text}
         </span>
       </div>

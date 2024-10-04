@@ -2,17 +2,19 @@
 
 import Breadcrumb from "@/components/Breadcrumb";
 import Button from "@/components/Button";
-import Card from "@/components/Card";
+
 import Chip from "@/components/Chip";
 import Icon from "@/components/Icons";
+import LimitedParagraph from "@/components/LimitedParagraph";
+import ProjectCard from "@/components/ProjectCard";
 import ToolTip from "@/components/Tooltip";
-import token from "@/verified/token";
+import token from "@/unity/tokens";
 import { FC, useState } from "react";
 
 const AllTokens: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredTokens = token.filter((item) =>
+  const filtered_tokens = token.filter((item) =>
     item.information.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
     item.information.ticker.toLowerCase().includes(searchQuery.toLowerCase())
@@ -25,9 +27,12 @@ const AllTokens: FC = () => {
       <div className="py-4 px-2">
 
         <div className="flex justify-between items-center w-full">
-          <h3 className={`text-xl font-bold text-black dark:text-neutral-300`}>
-            All <span className={` `}>Verified</span> Tokens
-          </h3>
+          <div className='flex items-center gap-2'>
+            <h3 className="text-lg uppercase font-bold tracking-wider text-neutral-300">
+              <code>Verified <span className="text-violet-400">Tokens</span></code>
+              <div className="border-2 border-violet-400 w-full"/>
+            </h3>
+          </div>
 
           <div className="max-w-sm flex items-center">
             <ToolTip text="You can search using Name, Ticker or Category.">
@@ -39,55 +44,13 @@ const AllTokens: FC = () => {
               placeholder="Search Tokens..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="py-2 px-4 block w-full border-neutral-600 rounded-md text-sm dark:bg-neutral-900/30 border dark:border-neutral-800 dark:text-neutral-300 dark:placeholder-neutral-600 dark:focus:border-violet-400"
+              className="py-2 px-4 block w-full rounded-md text-sm bg-neutral-950 border-2 border-neutral-900 text-neutral-300 placeholder-neutral-500 focus:border-violet-400"
             />
           </div>
         </div>
 
-        <div className="flex mx-auto gap-4 gap-y-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          { filteredTokens.map((group, i) => {
-          let url = '';
-          let url_txt = '';
-          if (group.links.website) {
-            url = group.links.website as string;
-            url_txt = 'Website';
-          } else if (group.links.twitter) {
-            url = group.links.twitter as string;
-            url_txt = 'Twitter';
-          }
-
-          return (
-            <Card key={i} hover_effect>
-              <div className="p-1">
-                <h3 className="text-lg font-medium dark:text-neutral-200 text-center tracking-wide">
-                  {group.information.name}
-                </h3>
-
-                <h3 className="text-md font-bold tracking-wider text-center dark:text-violet-400">
-                  {'[' + group.information.ticker + ']'}
-                </h3>
-
-                <div className="flex justify-center rounded-md m-2">
-                  <img src={group.images.logo} className="border-2 border-slate-300 dark:border-neutral-800 rounded-lg h-16 w-16"/>
-                </div>
-
-                <div className="flex justify-center pt-2">
-                  <Chip text={group.category} size="xs"/>
-                </div>
-
-                <p className="p-2 mb-4 text-gray-500 dark:text-neutral-400 h-25 overflow-y-auto mt-4 px-2 text-center text-sm [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-slate-300 [&::-webkit-scrollbar-thumb]:bg-slate-400 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
-                  <code>{group.information.description}</code>
-                </p>
-
-                  <div className="-mb-6 flex justify-center gap-4">
-                    <Button text="Explore" size="xs" url={'/tokens/' + group.slug}/>
-
-                    <Button text={url_txt} size="xs" url={url} target="_blank"/>
-                  </div>
-                </div>
-              </Card>
-            )
-          })}
+        <div className="flex flex-wrap gap-4 justify-center mx-auto gap-y-8 mt-2 py-2">
+          { filtered_tokens.map((t, i) => (<ProjectCard key={i} token={t}/>))}
         </div>
       </div>
     </div>

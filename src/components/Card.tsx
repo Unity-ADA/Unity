@@ -1,18 +1,25 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
-interface CustomProp {
-  children: ReactNode;
-  hover_effect?: boolean;
+interface custom_props {
+  children:     React.ReactNode;
+  extra_class?: string;
 }
 
-const Card: FC <CustomProp> = ({ children, hover_effect = false }) => {
-  let he = "";
-  if (hover_effect) {
-    he = "hover:scale-105 transition-all duration-300 hover:dark:bg-neutral-900/70";
-  }
+const Card: FC <custom_props> = ({
+  children, extra_class
+}) => {
+
+  const card_class = `
+    bg-neutral-950/30
+    background-blur
+    border-2
+    border-neutral-800
+    rounded-xl
+    px-4 py-2
+  `;
 
   return (
-    <div className={`${he} border-2 border-neutral-500 dark:border-neutral-900 rounded-md p-2 bg-neutral-800 dark:bg-neutral-900/30`}>
+    <div className={card_class + " " + extra_class}>
       {children}
     </div>
   );
